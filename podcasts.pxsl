@@ -3,3 +3,4 @@ opml
   body
     outline -text=signaltonoise -xmlUrl=http://archive.kpsu.org/station/archives/213/feed
     outline -text=audiodregs -xmlUrl=http://www.audiodregs.com/podcast/adr_podcast.xml
+    outline -text=all7 -xmlUrl=http://archive.kpsu.org/station/archives/24627/feed

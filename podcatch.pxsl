@@ -1,8 +1,35 @@
 stylesheet -xmlns:xsl=http://www.w3.org/1999/XSL/Transform -version=1.0
   output -method=text
-  param episode 1
+  param program
+  param episode
+  
+  template opml/body
+    choose
+      when $program
+        apply-templates outline[@text=$program]
+      otherwise
+        <<Programs: >>
+        apply-templates outline index
+
+  template outline
+    apply-templates document(@xmlUrl)
+
+  template outline -mode=index
+    value-of @text
+    if position()!=last()
+      <<, >>
+
   template channel
-    apply-templates item[$episode]
+    choose
+      when $episode
+        apply-templates item[$episode]
+      otherwise
+        apply-templates item index
 
   template item
     value-of enclosure/@url
+
+  template item -mode=index
+    value-of -select=<<concat('Episode[',position(),']: ',title,' on ',pubDate)>>
+    text <<
+>>
