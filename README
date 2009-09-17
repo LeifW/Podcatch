@@ -1,0 +1,17 @@
+Dead-simple podcatcher
+
+Requirements:
+xsltproc -part of the libxslt package, most likely already on your Linux or OSX system.  This can be substitutued with any other XSLT processorr, like MSXML on Windows.
+wget - To download the mp3s.  You can replace this with whatever you wish, maybe "fetch" on OSX?
+A shell.  -You can use this just fine without the shell script wrapper, but if you don't have a shell, this is probably not the tool for you.
+
+Usage:
+Save links to your favourite podcasts in the podcasts.xml file.  Essentially it's an OPML file (a list of feeds), with name and URL pairs.
+./podcatch.sh
+ -Lists all the programs you have in podcasts.xml.
+./podcatch.sh programName
+ -Lists all the episodes in the program named programName.
+./podcatch.sh progamName episodeNum
+ -Downloads an .mp3 of the specified episode number from that program.
+
+The .pxsl files are merely source files to the .xsl and .xsl files.  It's a shorthand form of XML to save typing (google "pxsl").  Uses whitespace indentation instead of closing brackets, and some other presets to cut down on the verbosity of typing XSLT.  If you use Haml you should be familiar with this idea.
