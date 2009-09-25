@@ -1,6 +1,8 @@
+,feed name url =
+  outline -text=<(,name)> -xmlUrl=<(,url)>
 opml
   head
   body
-    outline -text=signaltonoise -xmlUrl=http://archive.kpsu.org/station/archives/213/feed
-    outline -text=audiodregs -xmlUrl=http://www.audiodregs.com/podcast/adr_podcast.xml
-    outline -text=all7 -xmlUrl=http://archive.kpsu.org/station/archives/24627/feed
+    ,feed signaltonoise http://archive.kpsu.org/station/archives/213/feed
+    ,feed audiodregs http://www.audiodregs.com/podcast/adr_podcast.xml
+    ,feed all7 http://archive.kpsu.org/station/archives/24627/feed
