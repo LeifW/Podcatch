@@ -1,4 +1,4 @@
-stylesheet -xmlns:xsl=http://www.w3.org/1999/XSL/Transform -version=1.0
+stylesheet -xmlns:xsl=http://www.w3.org/1999/XSL/Transform -version=1.0 -xmlns:str=http://exslt.org/strings -extension-element-prefixes=str
   output -method=text
   param program
   param episode
@@ -27,10 +27,17 @@ stylesheet -xmlns:xsl=http://www.w3.org/1999/XSL/Transform -version=1.0
         apply-templates item index
 
   template item
+    value-of -select=<<concat('-O ', $program, '-')>>
+    apply-templates str:tokenize(pubDate)[position()<5]
+    text <<.>>
+    apply-templates str:tokenize(enclosure/@url,'.')[position()=last()]
+    text << >>
     value-of enclosure/@url
 
   template item -mode=index
     value-of -select=<<concat('Episode[',position(),']: ',title,' on ',pubDate)>>
     text <<
 >>
+  template token
+    value-of .
   template text()

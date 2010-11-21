@@ -1,4 +1,4 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" xmlns:str="http://exslt.org/strings" extension-element-prefixes="str">
   <xsl:output method="text"/>
   <xsl:param name="program"/>
   <xsl:param name="episode"/>
@@ -33,6 +33,11 @@
   </xsl:template>
 
   <xsl:template match="item">
+    <xsl:value-of select="concat('-O ', $program, '-')"/>
+    <xsl:apply-templates select="str:tokenize(pubDate)[position()&lt;5]"/>
+    <xsl:text>.</xsl:text>
+    <xsl:apply-templates select="str:tokenize(enclosure/@url,'.')[position()=last()]"/>
+    <xsl:text> </xsl:text>
     <xsl:value-of select="enclosure/@url"/>
   </xsl:template>
 
@@ -40,6 +45,9 @@
     <xsl:value-of select="concat('Episode[',position(),']: ',title,' on ',pubDate)"/>
     <xsl:text>
 </xsl:text>
+  </xsl:template>
+  <xsl:template match="token">
+    <xsl:value-of select="."/>
   </xsl:template>
   <xsl:template match="text()"/>
 </xsl:stylesheet>
